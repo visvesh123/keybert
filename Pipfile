@@ -6,8 +6,8 @@ name = "pypi"
 [packages]
 flask = "*"
 zappa = "*"
-keybert = "*"
 pandas = "*"
+yake = "*"
 
 [dev-packages]
 

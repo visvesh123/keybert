@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, request
-from keybert import KeyBERT
+from yake import KeywordExtractor
 import pandas as pd
 
+
+kw_extractor = KeywordExtractor(lan="en", n=1, top=5)
 app = Flask(__name__)
 
-model = KeyBERT(model="distilbert-base-nli-mean-tokens")
+
 df = pd.concat(
     map(pd.read_csv, ['reviews-13495-13500.csv', 'reviews-13500-13537.csv']), ignore_index=True)
 # CORS(app)
@@ -22,8 +24,7 @@ def trending_keywords(appid):
     x = df3.shape[0]
     arr = []
     for i in range(1, 100):
-        a = model.extract_keywords(
-            df3['review'].values[i], top_n=1, keyphrase_ngram_range=(1, 1), stop_words="english")
+        a = kw_extractor.extract_keywords(text=df3['review'].values[i])
         arr = arr + a
     x = arr.sort(key=lambda x: x[1])
     print(x)

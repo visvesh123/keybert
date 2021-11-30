@@ -5,6 +5,7 @@
         "profile_name": "default",
         "project_name": "keybert",
         "runtime": "python3.9",
-        "s3_bucket": "zappa-iffvuunh6"
+        "s3_bucket": "zappa-iffvuunh6",
+        "slim_handler" : true
     }
 }
